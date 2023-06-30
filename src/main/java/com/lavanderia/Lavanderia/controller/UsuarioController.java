@@ -12,6 +12,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,26 +30,25 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsuarioController {
 
     @Autowired
-    UsuarioServiceImpl usuarioService;
+    private UsuarioServiceImpl usuarioService;
 
+ 
+    @Operation(summary = "Se obtiene la lista de Usuarios")
+   
+    @PostMapping("/usuariostodos")
+    public ResponseEntity<List<Usuario>> listaUsuarios() {
+        return new ResponseEntity<>(usuarioService.findByAll(), HttpStatus.OK);
+    }
     @PostMapping("/login")
     public ResponseEntity<Usuario> iniciarSesion(@RequestBody Usuario usuario) {
         Usuario usuarioAutenticado = usuarioService.autenticarUsuario(usuario.getUsername(), usuario.getClave());
-
+        
         if (usuarioAutenticado != null) {
             return new ResponseEntity<>(usuarioAutenticado, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
     }
-    
-    
-    @Operation(summary = "Se obtiene la lista de Usuarios")
-    @GetMapping("/listar")
-    public ResponseEntity<List<Usuario>> listaUsuarios() {
-        return new ResponseEntity<>(usuarioService.findByAll(), HttpStatus.OK);
-    }
-
     @Operation(summary = "Debe enviar los campos del Usuario")
     @PostMapping("/crear")
     public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario u) {
@@ -74,7 +74,8 @@ public class UsuarioController {
         }
     }
 
-    public ResponseEntity<Usuario> elimiarUsuario(@PathVariable Integer id) {
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<Usuario> eliminarUsuario(@PathVariable Integer id) {
         usuarioService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
