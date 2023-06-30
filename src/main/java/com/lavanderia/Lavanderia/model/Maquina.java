@@ -23,11 +23,11 @@ import lombok.Data;
 public class Maquina {
       @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_maq")
-    private int id_maq;
+    @Column(name = "idMaq")
+    private int idMaq;
       
-      @Column(name = "tamaño")
-    private String tamaño;
+      @Column(name = "tamano")
+    private String tamano;
       
        @Column(name = "precio")
     private double precio;

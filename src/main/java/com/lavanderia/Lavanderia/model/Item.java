@@ -37,7 +37,7 @@ public class Item {
  
  
  @ManyToOne
-    @JoinColumn(name="id_maq",referencedColumnName = "id_maq")
+    @JoinColumn(name="idMaq",referencedColumnName = "idMaq")
     private Maquina maquina;
  
  

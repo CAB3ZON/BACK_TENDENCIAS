@@ -50,7 +50,7 @@ public class MaquinaController {
         if (new_maquina != null) {
             try {
                 new_maquina.setPrecio(u.getPrecio());
-                new_maquina.setTamaño(u.getTamaño());
+                new_maquina.setTamano(u.getTamano());
                
                 
                 return new ResponseEntity<>(maquinaService.save(new_maquina), HttpStatus.CREATED);
