@@ -31,6 +31,18 @@ public class UsuarioController {
     @Autowired
     UsuarioServiceImpl usuarioService;
 
+    @PostMapping("/login")
+    public ResponseEntity<Usuario> iniciarSesion(@RequestBody Usuario usuario) {
+        Usuario usuarioAutenticado = usuarioService.autenticarUsuario(usuario.getUsername(), usuario.getClave());
+
+        if (usuarioAutenticado != null) {
+            return new ResponseEntity<>(usuarioAutenticado, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+    }
+    
+    
     @Operation(summary = "Se obtiene la lista de Usuarios")
     @GetMapping("/listar")
     public ResponseEntity<List<Usuario>> listaUsuarios() {
