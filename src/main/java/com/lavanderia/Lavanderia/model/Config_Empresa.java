@@ -23,12 +23,12 @@ import lombok.Data;
 public class Config_Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_config")
-    private int id_config;
+    @Column(name = "idConfig")
+    private int idConfig;
+
     
-    
-    @Column(name = "nombre_empresa")
-    private String nombre_empresa;
+    @Column(name = "nombreEmpresa")
+    private String nombreEmpresa;
     
     @Column(name = "ruc")
     private String ruc;
@@ -40,7 +40,7 @@ public class Config_Empresa {
     private String telefono;
     
     @JsonIgnore
-    @OneToMany(mappedBy="config_empresa")
+    @OneToMany(mappedBy="configEmpresa")
     private List<Venta> listaFacturaC;
     
 }

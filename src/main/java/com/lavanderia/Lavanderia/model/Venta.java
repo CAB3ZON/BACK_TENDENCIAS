@@ -55,8 +55,8 @@ public class Venta {
     private Persona personaf;
     
     @ManyToOne
-    @JoinColumn(name="id_config",referencedColumnName = "id_config")
-    private Config_Empresa config_empresa;
+    @JoinColumn(name="idConfig",referencedColumnName = "idConfig")
+    private Config_Empresa configEmpresa;
     
     @JsonIgnore
     @OneToMany(mappedBy="factura")

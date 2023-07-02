@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/config_empresa")
+@RequestMapping("/configEmpresa")
 public class Config_EmpresaController {
      @Autowired
      Config_EmpresaServicelmpl config_EmpresaService;
@@ -48,7 +48,7 @@ public class Config_EmpresaController {
         Config_Empresa persona = config_EmpresaService.findById(id);
         if (persona != null) {
             try {
-                persona.setNombre_empresa(u.getNombre_empresa());
+                persona.setNombreEmpresa(u.getNombreEmpresa());
                 persona.setRuc(u.getRuc());
                 persona.setTelefono(u.getTelefono());
                 persona.setUbicacion(u.getUbicacion());
