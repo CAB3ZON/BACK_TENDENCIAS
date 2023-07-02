@@ -48,7 +48,7 @@ public class PersonaController {
         Persona persona = personaService.findById(id);
         if (persona != null) {
             try {
-                persona.setNombre_per(u.getNombre_per());
+                persona.setNombrePer(u.getNombrePer());
                 persona.setCorreo(u.getCorreo());
                 persona.setIdentificacion(u.getIdentificacion());
                 persona.setDireccion(u.getDireccion());

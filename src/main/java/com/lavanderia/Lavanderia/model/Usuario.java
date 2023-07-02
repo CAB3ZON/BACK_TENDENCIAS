@@ -48,7 +48,7 @@ public class Usuario {
     //private int estado;
     
     @ManyToOne
-    @JoinColumn(name="id_persona",referencedColumnName = "id_persona")
+    @JoinColumn(name="idPersona",referencedColumnName = "idPersona")
     private Persona persona;
     
     @ManyToOne

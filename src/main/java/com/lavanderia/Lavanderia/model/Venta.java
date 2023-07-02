@@ -51,7 +51,7 @@ public class Venta {
     
     
      @ManyToOne
-    @JoinColumn(name="id_persona",referencedColumnName = "id_persona")
+    @JoinColumn(name="idPersona",referencedColumnName = "idPersona")
     private Persona personaf;
     
     @ManyToOne

@@ -27,17 +27,14 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> imp
     }
 
     public Usuario autenticarUsuario(String username, String clave) {
-    // Aquí puedes realizar la lógica de autenticación consultando la base de datos
-    // Supongamos que estás utilizando JPA para interactuar con la base de datos
-
-    // Realizar una consulta para obtener el usuario por nombre de usuario
+    
     Usuario usuario = usuarioRepository.findByUsername(username);
 
     if (usuario != null && usuario.getClave().equals(clave)) {
-        return usuario; // El usuario se ha autenticado correctamente
+        return usuario; 
     }
 
-    return null; // Las credenciales de inicio de sesión no son válidas
+    return null; 
 }
 
 }

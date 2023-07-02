@@ -24,13 +24,13 @@ import lombok.Data;
 public class Persona {
       @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_persona")
-    private int id_persona;
+    @Column(name = "idPersona")
+    private int idPersona;
 
    // @Size(min = 3, max = 10, message = "El nombre debe tener entre 3 y 10 caracteres")
    // @NotBlank(message = "El nombre no puede estar en blanco")
-    @Column(name = "nombre_per")
-    private String nombre_per;
+    @Column(name = "nombrePer")
+    private String nombrePer;
 
    // @Size(min = 3, max = 10, message = "El apellido debe tener entre 3 y 10 caracteres")
     //@NotBlank(message = "El apellido no puede estar en blanco")
