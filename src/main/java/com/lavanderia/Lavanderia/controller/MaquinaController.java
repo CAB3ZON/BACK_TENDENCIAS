@@ -31,6 +31,17 @@ public class MaquinaController {
     MaquinaServicelmpl maquinaService;
     
     
+     @Operation(summary = "Se obtiene la lista de Personas")
+    @GetMapping("/porid/{id}")
+    public ResponseEntity<Maquina> listaPersonaporID(@PathVariable Integer id) {
+        Maquina maquina = maquinaService.findById(id);  
+if (maquina != null) {      
+return ResponseEntity.ok(maquina);
+        } else {   
+return ResponseEntity.notFound().build();
+        }
+    }
+    
     
     @Operation(summary = "Se obtiene la lista de Personas")
     @GetMapping("/listar")
@@ -63,7 +74,7 @@ public class MaquinaController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Maquina> eliminarPersona(@PathVariable Integer id) {
         maquinaService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
