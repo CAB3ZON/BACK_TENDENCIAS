@@ -30,6 +30,18 @@ public class ServicioController {
     @Autowired
     ServicioServicelmpl servicioService;
     
+    
+     @Operation(summary = "Se obtiene los servicios por ID")
+    @GetMapping("/porid/{id}")
+    public ResponseEntity<Servicio> listaPersonaporID(@PathVariable Integer id) {
+        Servicio maquina = servicioService.findById(id);  
+if (maquina != null) {      
+return ResponseEntity.ok(maquina);
+        } else {   
+return ResponseEntity.notFound().build();
+        }
+    }
+    
      @Operation(summary = "Se obtiene la lista de los roles")
     @GetMapping("/listar")
     public ResponseEntity<List<Servicio>> listaRoles() {

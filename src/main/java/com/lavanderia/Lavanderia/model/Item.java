@@ -32,7 +32,7 @@ public class Item {
     private double precio_total;
  
  @ManyToOne
-    @JoinColumn(name="id_service",referencedColumnName = "id_service")
+    @JoinColumn(name="idService",referencedColumnName = "idService")
     private Servicio servicio;
  
  

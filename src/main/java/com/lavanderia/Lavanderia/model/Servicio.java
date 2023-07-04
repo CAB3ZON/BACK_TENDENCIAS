@@ -23,8 +23,8 @@ import lombok.Data;
 public class Servicio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_service")
-    private int id_service;
+    @Column(name = "idService")
+    private int idService;
     
     @Column(name = "nombre")
     private String nombre;
