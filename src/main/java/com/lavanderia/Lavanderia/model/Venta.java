@@ -31,7 +31,7 @@ public class Venta {
     private int id_factura;
       
     @Column(name = "fecha")
-    private Date tamaño;  
+    private Date fecha;  
     
     @Column(name = "tipo_pago")
     private String tipo_pago;
