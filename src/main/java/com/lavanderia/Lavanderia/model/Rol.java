@@ -24,13 +24,13 @@ import lombok.Data;
 public class Rol {
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_rol")
-    private int id_rol;
+    @Column(name = "idRol")
+    private int idRol;
     
    // @Size(min = 3, max = 10, message = "El usuario debe tener entre 3 y 10 caracteres")
     //@NotBlank(message = "El rol no puede estar en blanco")
-    @Column(name = "nombre_del_rol")
-    private String nombre_del_rol;
+    @Column(name = "nombre")
+    private String nombre;
     
    // @Size(min = 3, max = 10, message = "El usuario debe tener entre 3 y 10 caracteres")
    // @NotBlank(message = "El usuario no puede estar en blanco")

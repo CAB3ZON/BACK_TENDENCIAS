@@ -52,7 +52,7 @@ public class Usuario {
     private Persona persona;
     
     @ManyToOne
-    @JoinColumn(name="id_rol",referencedColumnName = "id_rol")
+    @JoinColumn(name="idRol",referencedColumnName = "idRol")
     private Rol roles;
     
     

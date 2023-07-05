@@ -48,7 +48,7 @@ public class RolController {
         Rol new_rol = rolService.findById(id);
         if (new_rol != null) {
             try {
-                new_rol.setNombre_del_rol(r.getNombre_del_rol());
+                new_rol.setNombre(r.getNombre());
                 new_rol.setDescripcion(r.getDescripcion());
                 new_rol.setEstado(r.getEstado());
                

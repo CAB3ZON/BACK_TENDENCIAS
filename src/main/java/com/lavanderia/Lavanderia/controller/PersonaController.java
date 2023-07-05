@@ -6,6 +6,7 @@ package com.lavanderia.Lavanderia.controller;
 
 
 import com.lavanderia.Lavanderia.model.Persona;
+import com.lavanderia.Lavanderia.model.Servicio;
 import com.lavanderia.Lavanderia.service.PersonaServicelmpl;
 import io.swagger.v3.oas.annotations.Operation;
 import java.util.List;
@@ -30,6 +31,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class PersonaController {
      @Autowired
     PersonaServicelmpl personaService;
+     
+     @Operation(summary = "Se obtiene los servicios por ID")
+    @GetMapping("/porid/{id}")
+    public ResponseEntity<Persona> listaPersonaporID(@PathVariable Integer id) {
+        Persona maquina = personaService.findById(id);  
+if (maquina != null) {      
+return ResponseEntity.ok(maquina);
+        } else {   
+return ResponseEntity.notFound().build();
+        }
+    }
+     
 
     @Operation(summary = "Se obtiene la lista de Personas")
     @GetMapping("/listar")
