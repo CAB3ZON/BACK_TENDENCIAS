@@ -49,7 +49,7 @@ public class VentaController {
         if (venta != null) {
             try {
                 venta.setFecha(u.getFecha());
-                venta.setTipo_pago(u.getTipo_pago());
+                venta.setTipoPago(u.getTipoPago());
                 venta.setSubtotal(u.getSubtotal());
                 venta.setDescuento(u.getDescuento());
                 venta.setIva(u.getIva());

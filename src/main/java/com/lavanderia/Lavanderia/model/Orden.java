@@ -25,20 +25,20 @@ import lombok.Data;
 public class Orden {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_orden")
-    private int id_orden;
+    @Column(name = "idOrden")
+    private int idOrden;
     
     @Column(name = "estado")
     private int estado;
     
     
-    @Column(name = "total_orden")
-    private double total_orden;
+    @Column(name = "totalOrden")
+    private double totalOrden;
     
     
     @ManyToOne
-    @JoinColumn(name="id_factura",referencedColumnName = "id_factura")
-    private Venta factura;
+    @JoinColumn(name="idVenta",referencedColumnName = "idVenta")
+    private Venta venta;
   
     
     @ManyToOne

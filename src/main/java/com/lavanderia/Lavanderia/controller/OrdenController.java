@@ -50,9 +50,8 @@ public class OrdenController {
         if (orden != null) {
             try {
                 orden.setEstado(u.getEstado());
-                orden.setFactura(u.getFactura());
-                orden.setTotal_orden(u.getTotal_orden());
-                orden.setFactura(u.getFactura());
+                orden.setVenta(u.getVenta());
+                orden.setTotalOrden(u.getTotalOrden());
                 orden.setPersonaO(u.getPersonaO());
                
                
