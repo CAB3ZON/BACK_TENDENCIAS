@@ -22,14 +22,14 @@ import lombok.Data;
 public class Item {
  @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_item")
-    private int id_item;    
+    @Column(name = "idItem")
+    private int idItem;    
  
  @Column(name = "cantidad")
     private int cantidad;
  
- @Column(name = "precio_total")
-    private double precio_total;
+ @Column(name = "precioTotal")
+    private double precioTotal;
  
  @ManyToOne
     @JoinColumn(name="idService",referencedColumnName = "idService")
@@ -42,6 +42,6 @@ public class Item {
  
  
  @ManyToOne
-    @JoinColumn(name="id_orden",referencedColumnName = "id_orden")
+    @JoinColumn(name="idOrden",referencedColumnName = "idOrden")
     private Orden orden;
 }

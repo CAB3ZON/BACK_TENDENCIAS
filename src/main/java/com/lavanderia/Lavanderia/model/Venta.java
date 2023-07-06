@@ -27,14 +27,14 @@ import lombok.Data;
 public class Venta {
       @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_factura")
-    private int id_factura;
+    @Column(name = "idVenta")
+    private int idVenta;
       
     @Column(name = "fecha")
-    private Date tamaño;  
+    private Date fecha;  
     
-    @Column(name = "tipo_pago")
-    private String tipo_pago;
+    @Column(name = "tipoPago")
+    private String tipoPago;
     
     @Column(name = "subtotal")
     private double subtotal;
@@ -59,7 +59,7 @@ public class Venta {
     private Config_Empresa configEmpresa;
     
     @JsonIgnore
-    @OneToMany(mappedBy="factura")
+    @OneToMany(mappedBy="venta")
     private List<Orden> listaOrden;
     
     

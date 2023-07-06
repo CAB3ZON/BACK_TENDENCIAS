@@ -49,7 +49,8 @@ public class ItemController {
             try {
                 new_maquina.setCantidad(u.getCantidad());
                 new_maquina.setMaquina(u.getMaquina());
-                new_maquina.setPrecio_total(u.getPrecio_total());
+                new_maquina.setPrecioTotal(u.getPrecioTotal());
+                new_maquina.setServicio(u.getServicio());
              
                 return new ResponseEntity<>(itemMaquinaService.save(new_maquina), HttpStatus.CREATED);
             } catch (Exception e) {

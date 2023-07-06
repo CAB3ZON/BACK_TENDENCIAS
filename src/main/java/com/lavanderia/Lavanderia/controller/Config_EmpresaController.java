@@ -5,6 +5,7 @@
 package com.lavanderia.Lavanderia.controller;
 
 import com.lavanderia.Lavanderia.model.Config_Empresa;
+import com.lavanderia.Lavanderia.model.Maquina;
 import com.lavanderia.Lavanderia.service.Config_EmpresaServicelmpl;
 import io.swagger.v3.oas.annotations.Operation;
 import java.util.List;
@@ -30,6 +31,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class Config_EmpresaController {
      @Autowired
      Config_EmpresaServicelmpl config_EmpresaService;
+
+    @GetMapping("/porid/{id}")
+    public ResponseEntity<Config_Empresa> listaPersonaporID(@PathVariable Integer id) {
+        Config_Empresa empresa = config_EmpresaService.findById(id);
+        if (empresa != null) {
+            return ResponseEntity.ok(empresa);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
      
      @Operation(summary = "Se obtiene la lista de Personas")
     @GetMapping("/listar")
