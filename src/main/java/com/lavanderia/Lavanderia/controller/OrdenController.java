@@ -5,32 +5,57 @@
  */
 package com.lavanderia.Lavanderia.controller;
 
+import com.lavanderia.Lavanderia.model.Config_Empresa;
 import com.lavanderia.Lavanderia.model.Orden;
+import com.lavanderia.Lavanderia.model.Persona;
+import com.lavanderia.Lavanderia.repository.OrdenRepository;
 import com.lavanderia.Lavanderia.service.OrdenServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
  * @author ASUS ROG
  */
 @RestController
 @RequestMapping("/orden")
+@CrossOrigin(origins = "http://localhost:4200")
 public class OrdenController {
-     @Autowired
+    @Autowired
     OrdenServiceImpl ordenServiceImpl;
+
+    @Autowired
+    OrdenRepository ordenRepository;
+
+
+    @GetMapping("/buscar/{cedula}")
+    public ResponseEntity<List<Orden>> buscarPorCedula(@PathVariable String cedula) {
+        List<Orden> ordenes = ordenRepository.buscarOrden(cedula);
+
+        if (ordenes != null) {
+            return ResponseEntity.ok(ordenes);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/porid/{id}")
+    public ResponseEntity<Orden> listaPersonaporID(@PathVariable Integer id) {
+        Orden orden = ordenServiceImpl.findById(id);
+        if (orden != null) {
+            return ResponseEntity.ok(orden);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @Operation(summary = "Se obtiene la lista de orden")
     @GetMapping("/listar")
@@ -53,9 +78,8 @@ public class OrdenController {
                 orden.setVenta(u.getVenta());
                 orden.setTotalOrden(u.getTotalOrden());
                 orden.setPersonaO(u.getPersonaO());
-               
-               
-                
+
+
                 return new ResponseEntity<>(ordenServiceImpl.save(orden), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
