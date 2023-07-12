@@ -7,6 +7,7 @@ package com.lavanderia.Lavanderia.controller;
 
 import com.lavanderia.Lavanderia.model.Persona;
 import com.lavanderia.Lavanderia.model.Servicio;
+import com.lavanderia.Lavanderia.repository.PersonaRepository;
 import com.lavanderia.Lavanderia.service.PersonaServicelmpl;
 import io.swagger.v3.oas.annotations.Operation;
 import java.util.List;
@@ -31,6 +32,23 @@ import org.springframework.web.bind.annotation.RestController;
 public class PersonaController {
      @Autowired
     PersonaServicelmpl personaService;
+     
+     @Autowired
+     PersonaRepository personaRepository;
+     
+     
+     @GetMapping("/personas/{cedula}")
+    public ResponseEntity<Persona> buscarPorCedula(@PathVariable String cedula) {
+        Persona persona = personaRepository.buscarPorCedula(cedula);
+        
+        if (persona != null) {
+            return ResponseEntity.ok(persona);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+     
+     
      
      @Operation(summary = "Se obtiene los servicios por ID")
     @GetMapping("/porid/{id}")
