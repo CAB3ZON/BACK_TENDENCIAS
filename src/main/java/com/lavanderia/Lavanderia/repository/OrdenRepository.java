@@ -8,12 +8,14 @@ package com.lavanderia.Lavanderia.repository;
 import com.lavanderia.Lavanderia.model.Orden;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 /**
- *
  * @author ASUS ROG
  */
-public interface OrdenRepository extends JpaRepository<Orden,Integer>{
-    @Query(value = "Select * from orden u where u.nombre_per = :nombre_ord", nativeQuery = true)
-    public Orden buscarOrden(String nombre);
+public interface OrdenRepository extends JpaRepository<Orden, Integer> {
+    @Query(value = "SELECT orden.*, persona.id_persona AS persona_id_persona, persona.identificacion FROM orden JOIN persona ON orden.id_persona = persona.id_persona WHERE persona.identificacion = :identificacion", nativeQuery = true)
+    public List<Orden> buscarOrden(@Param("identificacion") String cedula);
 }

@@ -8,12 +8,14 @@ package com.lavanderia.Lavanderia.repository;
 import com.lavanderia.Lavanderia.model.Persona;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
  * @author USUARIO
  */
 public interface PersonaRepository extends JpaRepository<Persona, Integer> {
-    @Query(value = "Select * from persona u where u.nombre_per = :nombre_per", nativeQuery = true)
-    public Persona buscarPersona(String nombre);
+   @Query(value = "SELECT * FROM persona WHERE identificacion = :identificacion", nativeQuery = true)
+    public Persona buscarPorCedula(@Param("identificacion") String cedula);
+    
 }
