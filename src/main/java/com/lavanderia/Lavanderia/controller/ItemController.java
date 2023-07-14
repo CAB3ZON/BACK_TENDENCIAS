@@ -7,6 +7,7 @@ package com.lavanderia.Lavanderia.controller;
 import com.lavanderia.Lavanderia.model.Item;
 import com.lavanderia.Lavanderia.service.ItemServicelmpl;
 import io.swagger.v3.oas.annotations.Operation;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,9 +37,26 @@ public class ItemController {
         return new ResponseEntity<>(itemMaquinaService.findByAll(), HttpStatus.OK);
     }
 
+    
+    @Operation(summary = "Debe enviar los campos del item_maquina")
+@PostMapping("/crearvarios")
+public ResponseEntity<List<Item>> crearPersona(@RequestBody List<Item> items) {
+    List<Item> itemsCreados = new ArrayList<>();
+    for (Item item : items) {
+        double precioTotal = item.getCantidad() * item.getMaquina().getPrecio();
+        item.setPrecioTotal(precioTotal);
+        itemsCreados.add(itemMaquinaService.save(item));
+    }
+    return new ResponseEntity<>(itemsCreados, HttpStatus.CREATED);
+}
+    
+    
+    
     @Operation(summary = "Debe enviar los campos del item_maquina")
     @PostMapping("/crear")
     public ResponseEntity<Item> crearPersona(@RequestBody Item u) {
+        double xxx=u.getCantidad()*u.getMaquina().getPrecio();
+        u.setPrecioTotal(xxx);
         return new ResponseEntity<>(itemMaquinaService.save(u), HttpStatus.CREATED);
     }
 
