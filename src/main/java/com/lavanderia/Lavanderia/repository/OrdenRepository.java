@@ -18,4 +18,10 @@ import java.util.List;
 public interface OrdenRepository extends JpaRepository<Orden, Integer> {
     @Query(value = "SELECT orden.*, persona.id_persona AS persona_id_persona, persona.identificacion FROM orden JOIN persona ON orden.id_persona = persona.id_persona WHERE persona.identificacion = :identificacion", nativeQuery = true)
     public List<Orden> buscarOrden(@Param("identificacion") String cedula);
+
+    @Query(value = "SELECT * FROM `orden` WHERE `id_venta` IS NULL", nativeQuery = true)
+    public List<Orden> listarOrden();
+
+    @Query(value = " SELECT * FROM `orden` WHERE `id_venta` IS NOT NULL", nativeQuery = true)
+    public List<Orden> listarOrdenNoNull();
 }
