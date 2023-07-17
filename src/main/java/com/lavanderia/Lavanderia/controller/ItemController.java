@@ -5,6 +5,7 @@
 package com.lavanderia.Lavanderia.controller;
 
 import com.lavanderia.Lavanderia.model.Item;
+import com.lavanderia.Lavanderia.repository.ItemRepository;
 import com.lavanderia.Lavanderia.service.ItemServicelmpl;
 import io.swagger.v3.oas.annotations.Operation;
 import java.util.ArrayList;
@@ -31,11 +32,31 @@ public class ItemController {
      @Autowired
      ItemServicelmpl itemMaquinaService;
      
+     @Autowired
+     ItemRepository itemRepository;
+     
      @Operation(summary = "Se obtiene la lista de items")
     @GetMapping("/listar")
     public ResponseEntity<List<Item>> listaPersona() {
         return new ResponseEntity<>(itemMaquinaService.findByAll(), HttpStatus.OK);
     }
+    
+    
+    
+    @GetMapping("/listarsinorden")
+    public ResponseEntity<List<Item>> buscarsinorden() {
+        List<Item> ordenes = itemRepository.itemssinorden();
+
+        if (ordenes != null) {
+            return ResponseEntity.ok(ordenes);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    
+    
+    
+    
 
     
     @Operation(summary = "Debe enviar los campos del item_maquina")
