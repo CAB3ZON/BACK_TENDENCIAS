@@ -41,6 +41,8 @@ public class UsuarioController {
     public ResponseEntity<List<Usuario>> listaUsuarios() {
         return new ResponseEntity<>(usuarioService.findByAll(), HttpStatus.OK);
     }
+    
+    
     @PostMapping("/login")
     public ResponseEntity<Usuario> iniciarSesion(@RequestBody Usuario usuario) {
         Usuario usuarioAutenticado = usuarioService.autenticarUsuario(usuario.getUsername(), usuario.getClave());

@@ -50,14 +50,14 @@ public class PersonaController {
      
      
      
-     @Operation(summary = "Se obtiene los servicios por ID")
+    @Operation(summary = "Se obtiene los servicios por ID")
     @GetMapping("/porid/{id}")
     public ResponseEntity<Persona> listaPersonaporID(@PathVariable Integer id) {
-        Persona maquina = personaService.findById(id);  
-if (maquina != null) {      
-return ResponseEntity.ok(maquina);
-        } else {   
-return ResponseEntity.notFound().build();
+        Persona maquina = personaService.findById(id);
+        if (maquina != null) {
+            return ResponseEntity.ok(maquina);
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
      

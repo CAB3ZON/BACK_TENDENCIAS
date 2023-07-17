@@ -42,7 +42,7 @@ public class RolController {
     public ResponseEntity<Rol> crearRol(@RequestBody Rol r) {
         return new ResponseEntity<>(rolService.save(r), HttpStatus.CREATED);
     }
-
+ 
     @PutMapping("/actualizar/{id}")
     public ResponseEntity<Rol> actualizarRol(@PathVariable Integer id, @RequestBody Rol r) {
         Rol new_rol = rolService.findById(id);

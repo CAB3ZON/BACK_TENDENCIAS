@@ -40,6 +40,7 @@ public class Usuario {
     @Column(name = "clave")
     private String clave;
 
+    
     //@Email(message = "Debe ingresar una dirección de correo válida")
     //@Column(name = "email")
     //private String email;
