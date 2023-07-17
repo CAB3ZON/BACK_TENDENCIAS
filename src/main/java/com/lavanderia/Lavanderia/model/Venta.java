@@ -31,7 +31,7 @@ public class Venta {
     private int idVenta;
       
     @Column(name = "fecha")
-    private Date fecha;  
+    private String fecha;  
     
     @Column(name = "tipoPago")
     private String tipoPago;
@@ -47,8 +47,7 @@ public class Venta {
     
     @Column(name = "total")
     private double total;
-    
-    
+   
     
      @ManyToOne
     @JoinColumn(name="idPersona",referencedColumnName = "idPersona")
