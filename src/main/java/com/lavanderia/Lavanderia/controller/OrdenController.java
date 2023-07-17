@@ -35,6 +35,24 @@ public class OrdenController {
     @Autowired
     OrdenRepository ordenRepository;
 
+    @GetMapping("/listarnonull")
+    public ResponseEntity<List<Orden>> listaOrdenNotNUll() {
+        List<Orden> ordeneslistas = ordenRepository.listarOrdenNoNull();
+        if (ordeneslistas != null) {
+            return ResponseEntity.ok(ordeneslistas);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @GetMapping("/listarnull")
+    public ResponseEntity<List<Orden>> listaOrdenNull() {
+        List<Orden> ordeneslistas = ordenRepository.listarOrden();
+        if (ordeneslistas != null) {
+            return ResponseEntity.ok(ordeneslistas);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @GetMapping("/buscar/{cedula}")
     public ResponseEntity<List<Orden>> buscarPorCedula(@PathVariable String cedula) {
@@ -57,18 +75,17 @@ public class OrdenController {
         }
     }
 
-    
-    
-     @Operation(summary = "Debe enviar los campos del Orden")
-@PostMapping("/crearyobtenerid")
-public ResponseEntity<Integer> crearOrden(@RequestBody Orden u) {
-    Orden ordenCreada = ordenServiceImpl.save(u); // Guarda la Orden y obtiene la Orden creada con su ID generado
-    int idOrden = ordenCreada.getIdOrden(); // Obtiene el ID de la Orden creada
 
-    return new ResponseEntity<>(idOrden, HttpStatus.CREATED);
-}
-    
-    
+    @Operation(summary = "Debe enviar los campos del Orden")
+    @PostMapping("/crearyobtenerid")
+    public ResponseEntity<Integer> crearOrden(@RequestBody Orden u) {
+        Orden ordenCreada = ordenServiceImpl.save(u); // Guarda la Orden y obtiene la Orden creada con su ID generado
+        int idOrden = ordenCreada.getIdOrden(); // Obtiene el ID de la Orden creada
+
+        return new ResponseEntity<>(idOrden, HttpStatus.CREATED);
+    }
+
+
     @Operation(summary = "Se obtiene la lista de orden")
     @GetMapping("/listar")
     public ResponseEntity<List<Orden>> listaOrden() {

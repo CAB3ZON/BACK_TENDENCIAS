@@ -6,10 +6,14 @@
 package com.lavanderia.Lavanderia.controller;
 
 import com.lavanderia.Lavanderia.model.Venta;
+import com.lavanderia.Lavanderia.repository.VentaRepository;
 import com.lavanderia.Lavanderia.service.VentaServicelmpl;
 import io.swagger.v3.oas.annotations.Operation;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -30,6 +35,28 @@ import org.springframework.web.bind.annotation.RestController;
 public class VentaController {
   @Autowired
     VentaServicelmpl ventaServicelmpl;
+  @Autowired
+  VentaRepository ventaRepository;
+  
+ @GetMapping("/buscar/{fecha}")
+    public ResponseEntity<List<Venta>> buscarPorfecha(@PathVariable String fecha) {
+        List<Venta> ordenes = ventaRepository.buscarfecha(fecha);
+
+        if (ordenes != null) {
+            return ResponseEntity.ok(ordenes);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+ @GetMapping("/porid/{id}")
+    public ResponseEntity<Venta> listaventaporID(@PathVariable Integer id) {
+        Venta venta = ventaServicelmpl.findById(id);
+        if (venta != null) {
+            return ResponseEntity.ok(venta);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @Operation(summary = "Se obtiene la lista de venta")
     @GetMapping("/listar")
