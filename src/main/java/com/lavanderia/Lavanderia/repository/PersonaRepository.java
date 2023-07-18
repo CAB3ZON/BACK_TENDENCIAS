@@ -15,7 +15,7 @@ import org.springframework.data.repository.query.Param;
  * @author USUARIO
  */
 public interface PersonaRepository extends JpaRepository<Persona, Integer> {
-   @Query(value = "SELECT * FROM persona", nativeQuery = true)
+   @Query(value = "SELECT * FROM persona WHERE identificacion = :identificacion", nativeQuery = true)
     public Persona buscarPorCedula(@Param("identificacion") String cedula);
     
 }
