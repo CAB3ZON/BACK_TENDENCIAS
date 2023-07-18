@@ -4,10 +4,11 @@
  */
 package com.lavanderia.Lavanderia.repository;
 
-import com.lavanderia.Lavanderia.model.Venta;
+
 import com.lavanderia.Lavanderia.model.Item;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 /**
@@ -20,4 +21,8 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
     
     @Query(value = "SELECT * FROM item WHERE id_orden IS NULL", nativeQuery = true)
     List<Item> itemssinorden();
+    
+    @Modifying
+    @Query(value = "DELETE FROM item WHERE id_orden IS NULL", nativeQuery = true)
+    void borrarsinorden();
 }

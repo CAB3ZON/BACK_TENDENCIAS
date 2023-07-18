@@ -8,6 +8,7 @@ import com.lavanderia.Lavanderia.model.Item;
 import com.lavanderia.Lavanderia.repository.ItemRepository;
 import com.lavanderia.Lavanderia.service.ItemServicelmpl;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,14 @@ public class ItemController {
     @GetMapping("/listar")
     public ResponseEntity<List<Item>> listaPersona() {
         return new ResponseEntity<>(itemMaquinaService.findByAll(), HttpStatus.OK);
+    }
+    
+    
+    @Transactional
+     @DeleteMapping("/borrarsinorden")
+    public ResponseEntity<String> borrarsinorden() {
+        itemRepository.borrarsinorden();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
     
     
@@ -76,8 +85,14 @@ public ResponseEntity<List<Item>> crearPersona(@RequestBody List<Item> items) {
     @Operation(summary = "Debe enviar los campos del item_maquina")
     @PostMapping("/crear")
     public ResponseEntity<Item> crearPersona(@RequestBody Item u) {
+         if (u.getMaquina() != null) {
         double xxx=u.getCantidad()*u.getMaquina().getPrecio();
         u.setPrecioTotal(xxx);
+        }
+         if(u.getServicio() !=null){
+             double xyz=u.getCantidad()*u.getServicio().getPrecio();
+             u.setPrecioTotal(xyz);
+         }
         return new ResponseEntity<>(itemMaquinaService.save(u), HttpStatus.CREATED);
     }
 
