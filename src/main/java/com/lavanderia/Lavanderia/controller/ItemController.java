@@ -105,6 +105,7 @@ public ResponseEntity<List<Item>> crearPersona(@RequestBody List<Item> items) {
                 new_maquina.setMaquina(u.getMaquina());
                 new_maquina.setPrecioTotal(u.getPrecioTotal());
                 new_maquina.setServicio(u.getServicio());
+                new_maquina.setOrden(u.getOrden());
              
                 return new ResponseEntity<>(itemMaquinaService.save(new_maquina), HttpStatus.CREATED);
             } catch (Exception e) {
