@@ -21,11 +21,12 @@ public interface VentaRepository extends JpaRepository<Venta, Integer>{
 @Query(value = "SELECT * FROM venta WHERE fecha = :fecha", nativeQuery = true)
 public List<Venta> buscarfecha(String fecha);
 
-    
+    @Query(value = "SELECT * FROM `venta` ",nativeQuery = true)
+    public List<Venta>mostrarLista(String orden);
 
    
 
 }
 
 ////}   @Query(value = "SELECT * from usuario u where u.nombre = :nombre", nativeQuery = true)
-//    public Venta buscarConfig_Empresa(String nombre); 
+//    public Venta buscarConfig_Empresa(String nombre);
