@@ -63,7 +63,7 @@ public class MaquinaController {
             try {
                 new_maquina.setPrecio(u.getPrecio());
                 new_maquina.setTamano(u.getTamano());
-
+                   
 
                 return new ResponseEntity<>(maquinaService.save(new_maquina), HttpStatus.CREATED);
             } catch (Exception e) {

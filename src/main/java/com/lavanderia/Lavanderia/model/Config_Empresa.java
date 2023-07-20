@@ -39,6 +39,8 @@ public class Config_Empresa {
     @Column(name = "telefono")
     private String telefono;
     
+    @Column(name = "iva")
+    private double iva;
     @JsonIgnore
     @OneToMany(mappedBy="configEmpresa")
     private List<Venta> listaFacturaC;

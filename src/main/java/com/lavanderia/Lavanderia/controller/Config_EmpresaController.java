@@ -63,7 +63,7 @@ public class Config_EmpresaController {
                 persona.setRuc(u.getRuc());
                 persona.setTelefono(u.getTelefono());
                 persona.setUbicacion(u.getUbicacion());
-                
+                persona.setIva(u.getIva());
                 return new ResponseEntity<>(config_EmpresaService.save(persona), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
