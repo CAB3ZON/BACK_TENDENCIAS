@@ -37,7 +37,19 @@ public class VentaController {
     VentaServicelmpl ventaServicelmpl;
   @Autowired
   VentaRepository ventaRepository;
-  
+
+
+    @GetMapping("/buscarcedula/{identificacion},{fecha}")
+    public ResponseEntity<List<Venta>> buscarporIdentificacion(@PathVariable String identificacion,@PathVariable String fecha) {
+        List<Venta> ordenes = ventaRepository.buscarPorIdentificacionYFecha(identificacion,fecha);
+
+        if (ordenes != null) {
+            return ResponseEntity.ok(ordenes);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
  @GetMapping("/buscar/{fecha}")
     public ResponseEntity<List<Venta>> buscarPorfecha(@PathVariable String fecha) {
         List<Venta> ordenes = ventaRepository.buscarfecha(fecha);
