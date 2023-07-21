@@ -5,25 +5,25 @@
 package com.lavanderia.Lavanderia.repository;
 
 import com.lavanderia.Lavanderia.model.Venta;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 /**
- *
  * @author USUARIO
  */
-public interface VentaRepository extends JpaRepository<Venta, Integer>{
-@Query(value = "SELECT * FROM venta WHERE fecha = :fecha", nativeQuery = true)
-public List<Venta> buscarfecha(String fecha);
+public interface VentaRepository extends JpaRepository<Venta, Integer> {
+    @Query(value = "SELECT * FROM venta WHERE fecha = :fecha", nativeQuery = true)
+    public List<Venta> buscarfecha(String fecha);
 
     @Query(value = "SELECT venta.* FROM venta INNER JOIN persona ON venta.id_persona = persona.Id_persona WHERE persona.identificacion = :identificacion AND venta.fecha = :fecha", nativeQuery = true)
     public List<Venta> buscarPorIdentificacionYFecha(@Param("identificacion") String identificacion, @Param("fecha") String fecha);
-
 
 
 }
