@@ -81,6 +81,22 @@ public class VentaController {
     public ResponseEntity<Venta> crearPersona(@RequestBody Venta u) {
         return new ResponseEntity<>(ventaServicelmpl.save(u), HttpStatus.CREATED);
     }
+    
+    @Operation(summary = "Debe enviar los campos de la venta")
+    @PostMapping("/crearyobtenerid")
+    public ResponseEntity<Integer> crearVenta(@RequestBody Venta u) {
+        
+        double variable=u.getSubtotal()-u.getSubtotal()*u.getDescuento();
+        variable=variable+u.getIva()*variable;
+        variable = Math.round(variable * 100.0) / 100.0;
+        u.setTotal(variable);
+        Venta ventaCreada = ventaServicelmpl.save(u); // Guarda la venta y obtiene la Orden creada con su ID generado
+        int idVenta = ventaCreada.getIdVenta(); // Obtiene el ID de la Orden creada
+        
+        
+        return new ResponseEntity<>(idVenta, HttpStatus.CREATED);
+    }
+    
 
     @PutMapping("/actualizar/{id}")
     public ResponseEntity<Venta> actualizarPersona(@PathVariable Integer id, @RequestBody Venta u) {
