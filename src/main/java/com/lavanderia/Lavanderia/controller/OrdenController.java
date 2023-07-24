@@ -35,6 +35,16 @@ public class OrdenController {
     @Autowired
     OrdenRepository ordenRepository;
 
+    @GetMapping("/listarVenta/{id_venta}")
+    public ResponseEntity<List<Orden>> listaOrdenventa(@PathVariable int id_venta) {
+        List<Orden> ordenes = ordenRepository.listaOrdenventa(id_venta);
+
+        if (ordenes != null) {
+            return ResponseEntity.ok(ordenes);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
     @GetMapping("/listarnonull")
     public ResponseEntity<List<Orden>> listaOrdenNotNUll() {
         List<Orden> ordeneslistas = ordenRepository.listarOrdenNoNull();

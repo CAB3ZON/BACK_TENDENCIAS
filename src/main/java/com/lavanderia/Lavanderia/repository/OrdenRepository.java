@@ -24,4 +24,7 @@ public interface OrdenRepository extends JpaRepository<Orden, Integer> {
 
     @Query(value = " SELECT * FROM `orden` WHERE `id_venta` IS NOT NULL", nativeQuery = true)
     public List<Orden> listarOrdenNoNull();
+
+    @Query(value = "SELECT * FROM orden WHERE id_venta =  :id_venta",nativeQuery = true)
+    public List<Orden> listaOrdenventa(@Param("id_venta") int id_venta);
 }
