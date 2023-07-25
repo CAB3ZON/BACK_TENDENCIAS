@@ -37,7 +37,7 @@ public class UsuarioController {
  
     @Operation(summary = "Se obtiene la lista de Usuarios")
    
-    @PostMapping("/usuariostodos")
+    @GetMapping("/usuariostodos")
     public ResponseEntity<List<Usuario>> listaUsuarios() {
         return new ResponseEntity<>(usuarioService.findByAll(), HttpStatus.OK);
     }
