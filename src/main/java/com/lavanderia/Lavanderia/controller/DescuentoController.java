@@ -36,11 +36,16 @@ public class DescuentoController {
     public ResponseEntity<List<Descuento>> listaRoles() {
         return new ResponseEntity<>(descuentoService.findByAll(), HttpStatus.OK);
     }
-    
-    @Operation(summary = "Debe enviar los campos del rol")
+
     @PostMapping("/crear")
     public ResponseEntity<Descuento> crearRol(@RequestBody Descuento r) {
-        return new ResponseEntity<>(descuentoService.save(r), HttpStatus.CREATED);
+        // Divide el valor del descuento por 100 antes de guardar el objeto
+        r.setDescuento(r.getDescuento() / 100.0);
+        // Llama al servicio para guardar el objeto en la base de datos
+        // Supongamos que tienes una clase llamada DescuentoService que se encarga de la lógica de negocio
+        Descuento savedDescuento = descuentoService.save(r);
+        // Devuelve la respuesta con el objeto guardado y el código HTTP 201 Created
+        return new ResponseEntity<>(savedDescuento, HttpStatus.CREATED);
     }
  
     @PutMapping("/actualizar/{id}")
@@ -49,7 +54,7 @@ public class DescuentoController {
         if (new_rol != null) {
             try {
                 new_rol.setNombre(r.getNombre());
-                new_rol.setDescuento(r.getDescuento());
+                new_rol.setDescuento(r.getDescuento()/100.0);
                 
                
                 return new ResponseEntity<>(descuentoService.save(new_rol), HttpStatus.CREATED);

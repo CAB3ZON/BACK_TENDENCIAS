@@ -51,6 +51,7 @@ public class Config_EmpresaController {
     @Operation(summary = "Debe enviar los campos del persona")
     @PostMapping("/crear")
     public ResponseEntity<Config_Empresa> crearPersona(@RequestBody Config_Empresa u) {
+
         return new ResponseEntity<>(config_EmpresaService.save(u), HttpStatus.CREATED);
     }
 
