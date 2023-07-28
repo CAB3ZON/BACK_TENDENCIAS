@@ -5,6 +5,7 @@
 package com.lavanderia.Lavanderia.controller;
 
 
+import com.lavanderia.Lavanderia.model.Config_Empresa;
 import com.lavanderia.Lavanderia.model.Descuento;
 import com.lavanderia.Lavanderia.service.DescuentoServicelmpl;
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,14 +39,8 @@ public class DescuentoController {
     }
 
     @PostMapping("/crear")
-    public ResponseEntity<Descuento> crearRol(@RequestBody Descuento r) {
-        // Divide el valor del descuento por 100 antes de guardar el objeto
-        r.setDescuento(r.getDescuento() / 100.0);
-        // Llama al servicio para guardar el objeto en la base de datos
-        // Supongamos que tienes una clase llamada DescuentoService que se encarga de la lógica de negocio
-        Descuento savedDescuento = descuentoService.save(r);
-        // Devuelve la respuesta con el objeto guardado y el código HTTP 201 Created
-        return new ResponseEntity<>(savedDescuento, HttpStatus.CREATED);
+    public ResponseEntity<Descuento> crearPersona(@RequestBody Descuento u) {
+        return new ResponseEntity<>(descuentoService.save(u), HttpStatus.CREATED);
     }
  
     @PutMapping("/actualizar/{id}")
@@ -54,9 +49,7 @@ public class DescuentoController {
         if (new_rol != null) {
             try {
                 new_rol.setNombre(r.getNombre());
-                new_rol.setDescuento(r.getDescuento()/100.0);
-                
-               
+                new_rol.setDescuento(r.getDescuento());
                 return new ResponseEntity<>(descuentoService.save(new_rol), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
