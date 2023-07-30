@@ -1,5 +1,7 @@
 package com.lavanderia.Lavanderia;
 
+import com.lavanderia.Lavanderia.controller.EmailController;
+import com.lavanderia.Lavanderia.model.Email;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +15,14 @@ public class LavanderiaApplication {
 
 	public static void main(String[] args) {
 	SpringApplication.run(LavanderiaApplication.class, args);
+        EmailController email = new  EmailController();
+        EmailController e= new EmailController();
+        Email em= new Email();
+        em.setTo("osmanycaber4321@gmail.com");
+        e.enviarCorreo(em);
 	}
+        
+        
 @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
