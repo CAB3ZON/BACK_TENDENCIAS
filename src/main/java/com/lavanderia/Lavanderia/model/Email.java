@@ -6,6 +6,7 @@
 package com.lavanderia.Lavanderia.model;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -18,5 +19,5 @@ public class Email {
     private String from;
     private String subject;
     private String text;
-
+    private MultipartFile archivoAdjunto; 
 }
